@@ -11,15 +11,7 @@ const countOnly = function(allItems, itemToCount) {
   let results = {};
   
   for (const item of allItems) {
-    if (results[item]) {
-      results[item] += 1;
-    } else {
-        if (itemToCount[item] === true) {
-        results[item] = 1;
-      }
-    }
-  }
-  return results;
+    console.log(item)
 };
 
 
