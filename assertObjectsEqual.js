@@ -34,24 +34,53 @@ const eqObjects = function(object1, object2) {
     if (Array.isArray(object1[key]) && Array.isArray(object2[key])) {
       eqArrays(object1[key], object2[key]);
     }
-    if (object1[key] !== object2[key] && object1[key].length !== object2[key].length) {
+    if (object1[key] !== object2[key] || object1[key].length !== object2[key].length) {
       return false;
     }
   }
   return true;
 };
 
+const assertObjectsEquals = function(actual, expected) {
+  const inspect = require('util').inspect;
+  if (eqObjects(actual, expected)) {
+    console.log(`✅✅✅ Assertion Passed: ${inspect(actual)} === ${inspect(expected)}`);
+  } else {
+    console.log(`🛑🛑🛑 Assertion Failed: ${inspect(actual)} !== ${inspect(expected)}`);
+  }
+};
 
-const ab = { a: "1", b: "2" };
-const ba = { b: "2", a: "1" };
-assertEqual(eqObjects(ab, ba), true); // => true
+const obj1 = {
+  a: 1,
+  b: 2
+}
 
-const abc = { a: "1", b: "2", c: "3" };
-assertEqual(eqObjects(ab, abc), false); // => false
+const obj2 = {
+  a: 1,
+  b: 2
+}
 
-const cd = { c: "1", d: ["2", 3] };
-const dc = { d: ["2", 3], c: "1" };
-assertEqual(eqObjects(cd, dc), true); // => true
+const obj3 = {
+  a: 2,
+  b: 1
+}
 
-const cd2 = { c: "1", d: ["2", 3, 4] };
-assertEqual(eqObjects(cd, cd2), false); // => false
+const obj4 = {
+  a: 2,
+  b: 2
+}
+
+const obj5 = {
+  a: 1,
+  b: 2
+}
+
+const obj6 = {
+  b: 2,
+  a: 1
+}
+
+
+assertObjectsEquals(obj1, obj2);
+assertObjectsEquals(obj3, obj4);
+assertObjectsEquals(obj5, obj6);
