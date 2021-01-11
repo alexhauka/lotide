@@ -4,12 +4,12 @@
 const countOnly = function(allItems, itemToCount) {
   let results = {};
   
-  for (const name of allItems) {
-    if (itemToCount[name] === true) {
-      if (results[name]) {
-        results[name] += 1;
+  for (const item of allItems) {
+    if (itemToCount[item] === true) {
+      if (results[item]) {
+        results[item] += 1;
       } else {
-        results[name] = 1;
+        results[item] = 1;
       }
     }
   }
