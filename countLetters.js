@@ -1,3 +1,5 @@
+const countOnly = require("./countOnly");
+
 const countLetters = function(sentance) {
   let finalCount = {};
   for (let letter of sentance) {
@@ -12,4 +14,6 @@ const countLetters = function(sentance) {
   return finalCount;
 };
 
-console.log(countLetters('lighthouse labs'));
+// console.log(countLetters('lighthouse labs'));
+
+module.exports = countLetters;
